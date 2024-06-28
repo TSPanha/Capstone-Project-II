@@ -19,10 +19,10 @@ class CreateDoctorsTable extends Migration
             $table->unsignedBigInteger('department_id')->nullable();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
-            $table->unsignedBigInteger('gender')->nullable();
+            $table->string('gender')->nullable();
             $table->string('address')->nullable();
             $table->bigInteger('phone_number')->nullable();
-            $table->boolean('status')->default(0); // default value set to 0
+            $table->string('status');
             $table->timestamps();
         });
     }

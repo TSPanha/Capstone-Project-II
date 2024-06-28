@@ -12,12 +12,12 @@ class CreateHospitalDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('hospital_details', function (Blueprint $table) {
+        Schema::create('hospitals', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('admin_id')->nullable();
             $table->unsignedBigInteger('category_id')->nullable();
             $table->string('phone_number')->nullable();
-            $table->string('kh_name')->nullable();
+            $table->string('name')->nullable();
             $table->string('email')->nullable();
             $table->string('description')->nullable();
             $table->string('location')->nullable();

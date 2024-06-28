@@ -26,7 +26,9 @@ class SpecialistResource extends Resource
                 Forms\Components\TextInput::make('title')
                 ->required()
                 ->maxLength(255),
-                Forms\Components\Toggle::make('status')->label('Active')->default(1),
+                Forms\Components\TextInput::make('status')
+                ->required()
+                ->maxLength(255),
             ]);
     }
 
@@ -36,7 +38,7 @@ class SpecialistResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('id')->sortable()->searchable()->alignment('center'),
                 Tables\Columns\TextColumn::make('title')->sortable()->searchable()->alignment('center'),
-                Tables\Columns\BooleanColumn::make('status')->sortable()->searchable()->alignment('center'),
+                Tables\Columns\TextColumn::make('status')->sortable()->searchable()->alignment('center'),
             ])
             ->filters([
                 //

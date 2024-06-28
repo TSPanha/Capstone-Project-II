@@ -12,7 +12,7 @@ class CreateHospitalsTable extends Migration
             $table->foreignId('admin_id')->nullable()->constrained('user_admins'); // Replace 'user_admins' with your actual admins table name
             $table->foreignId('category_id')->nullable()->constrained('categories'); // Replace 'categories' with your actual categories table name
             $table->string('phone_number')->nullable();
-            $table->string('kh_name')->nullable();
+            $table->string('name')->nullable();
             $table->string('email')->nullable();
             $table->string('description')->nullable();
             $table->string('location')->nullable();

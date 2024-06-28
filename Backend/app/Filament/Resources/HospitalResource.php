@@ -23,11 +23,16 @@ class HospitalResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('kh_name')->required(),
+                Forms\Components\TextInput::make('name')->required(),
                 Forms\Components\TextInput::make('email')->email()->required(),
-                Forms\Components\TextInput::make('phone_number'),
-                Forms\Components\TextInput::make('description'),
-                Forms\Components\TextInput::make('location'),
+                Forms\Components\TextInput::make('phone_number')->required(),
+                Forms\Components\TextInput::make('location')->required(),
+                Forms\Components\Select::make('category_id')
+                ->relationship('category', 'name')
+                ->required(),
+                Forms\Components\Textarea::make('description')
+                ->required()->rows(10)
+                ->cols(20),
             ]);
     }
 
@@ -36,11 +41,16 @@ class HospitalResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('id')->sortable()->searchable()->alignment('center'),
-                Tables\Columns\TextColumn::make('kh_name')->sortable()->searchable()->alignment('center'),
+                Tables\Columns\TextColumn::make('category_id')->sortable()->searchable()->alignment('center'),
+                Tables\Columns\TextColumn::make('name')->sortable()->searchable()->alignment('center'),
                 Tables\Columns\TextColumn::make('email')->sortable()->searchable()->alignment('center'),
                 Tables\Columns\TextColumn::make('phone_number')->sortable()->searchable()->alignment('center'),
                 Tables\Columns\TextColumn::make('description')->sortable()->searchable()->alignment('center'),
                 Tables\Columns\TextColumn::make('location')->sortable()->searchable()->alignment('center'),
+                Tables\Columns\TextColumn::make('category.title')
+                ->label('Category')
+                ->sortable()
+                ->searchable()->alignment('center'),
                 Tables\Columns\TextColumn::make('created_at')->sortable()->searchable()->alignment('center'),
                 Tables\Columns\TextColumn::make('updated_at')->sortable()->searchable()->alignment('center'),
             ])

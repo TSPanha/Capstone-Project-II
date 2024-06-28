@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use App\Models\Specialist;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -16,7 +17,7 @@ class Doctor extends Model
 
     public function hospital()
     {
-        return $this->belongsTo(HospitalDetail::class, 'hospital_id');
+        return $this->belongsTo(Hospital::class, 'hospital_id');
     }
     public function specialist()
     {

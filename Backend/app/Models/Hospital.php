@@ -8,5 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Hospital extends Model
 {
     use HasFactory;
-    protected $fillable = ['kh_name', 'email', 'location', 'phone_number', 'description'];
+    protected $table = "hospitals";
+    protected $fillable = ['name', 'email', 'location', 'phone_number', 'description'];
+    public function user() 
+    {
+        return $this->belongsTo(User::class, 'admin_id');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

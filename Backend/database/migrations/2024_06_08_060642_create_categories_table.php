@@ -17,7 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->text('description')->nullable();
-            $table->boolean('status')->default(0); // default value set to 0
+            $table->string('status'); 
             $table->timestamps();
         });
     }
