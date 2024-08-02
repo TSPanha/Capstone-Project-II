@@ -1,3 +1,4 @@
+import 'package:doc_care/screens/booking/payment_screen.dart';
 import 'package:flutter/material.dart';
 
 class ReviewProfile extends StatefulWidget {
@@ -21,6 +22,7 @@ class _ReviewProfileState extends State<ReviewProfile> {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
         title: Text('Review Profile'),
@@ -46,6 +48,59 @@ class _ReviewProfileState extends State<ReviewProfile> {
           ],
         ),
       ),
+      bottomNavigationBar: BottomAppBar(
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8.0),
+            color: colorScheme.primary,
+          ),
+          child: ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor:
+                  WidgetStatePropertyAll<Color>(colorScheme.primary),
+              foregroundColor:
+                  WidgetStatePropertyAll<Color>(colorScheme.onPrimary),
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => PaymentScreen()),
+              );
+            },
+            child: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Next ',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16.0, // Adjust the font size as needed
+                    ),
+                  ),
+                  Container(
+                    height: 1.0, // Adjust the height of the line
+                    width: 20.0, // Adjust the width of the line
+                    color:
+                        colorScheme.onPrimary, // Adjust the color of the line
+                    margin: EdgeInsets.symmetric(
+                        horizontal: 8.0), // Adjust the margin around the line
+                  ),
+                  Text(
+                    'Confirm Payment',
+                    style: TextStyle(
+                      fontWeight: FontWeight.normal,
+                      fontSize: 16.0, // Adjust the font size as needed
+                    ),
+                  ),
+                  Icon(Icons.chevron_right_outlined,
+                      size: 24.0, color: colorScheme.onPrimary),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 
@@ -53,7 +108,9 @@ class _ReviewProfileState extends State<ReviewProfile> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title, style: TextStyle(fontSize: 16)),
+        SizedBox(height: 16),
+        Text(title,
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
         SizedBox(height: 4),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -68,6 +125,10 @@ class _ReviewProfileState extends State<ReviewProfile> {
           ],
         ),
         SizedBox(height: 16),
+        Divider(
+          thickness: 0.3,
+          color: Colors.black,
+        ),
       ],
     );
   }

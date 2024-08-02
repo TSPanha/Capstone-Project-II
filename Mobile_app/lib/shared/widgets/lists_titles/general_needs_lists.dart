@@ -1,3 +1,4 @@
+import 'package:doc_care/screens/booking/appointment_screen.dart';
 import 'package:flutter/material.dart';
 
 class GeneralNeedsPreviewList extends StatelessWidget {
@@ -65,7 +66,10 @@ class GeneralNeedsPreviewList extends StatelessWidget {
           subtitle:
               'Choose a Primary Care Doctor and complete your first video appointment.',
           onTap: () {
-            // TODO: Implement Book an Appointment action
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => AppointmentsScreen()),
+            );
           },
         ),
         const SizedBox(height: 4.0),

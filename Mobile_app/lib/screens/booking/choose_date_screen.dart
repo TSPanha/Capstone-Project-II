@@ -62,12 +62,13 @@ class _ChooseDateScreenState extends State<ChooseDateScreen> {
                 style: TextStyle(
                     fontWeight: FontWeight.bold, color: colorScheme.outline),
               ),
-              SizedBox(height: 8),
-              Row(
+              SizedBox(height: 16),
+              const Row(
                 children: [
                   CircleAvatar(
+                    radius: 30,
                     backgroundImage: NetworkImage(
-                        'https://wallpapers.com/images/hd/cute-anime-profile-pictures-vmrch99bgo5mjm4v.jpg'), // Replace with actual image URL
+                        'https://wallpapers.com/images/hd/cute-anime-profile-pictures-vmrch99bgo5mjm4v.jpg'),
                   ),
                   SizedBox(width: 8),
                   Column(
@@ -121,13 +122,13 @@ class _ChooseDateScreenState extends State<ChooseDateScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: 16),
+              SizedBox(height: 32),
               Text(
                 'DATE & TIME',
                 style: TextStyle(
                     fontWeight: FontWeight.bold, color: colorScheme.outline),
               ),
-              SizedBox(height: 8),
+              SizedBox(height: 16),
               Row(
                 children: [
                   Expanded(
@@ -202,7 +203,7 @@ class _ChooseDateScreenState extends State<ChooseDateScreen> {
                 style: TextStyle(
                     fontWeight: FontWeight.bold, color: colorScheme.outline),
               ),
-              SizedBox(height: 8),
+              SizedBox(height: 16),
               TextField(
                 maxLines: 3,
                 decoration: InputDecoration(
@@ -228,72 +229,85 @@ class _ChooseDateScreenState extends State<ChooseDateScreen> {
                 style: TextStyle(
                     fontWeight: FontWeight.bold, color: colorScheme.outline),
               ),
-              SizedBox(height: 8),
+              SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
                   // Handle attachment
                 },
-                child: Row(
-                  children: [
-                    Icon(Icons.add),
-                    Text('Add Attachments'),
-                  ],
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  side: BorderSide(
+                    color: colorScheme.outline,
+                    width: 0.5,
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
+                    children: [
+                      Icon(Icons.add),
+                      Text('Add Attachments'),
+                    ],
+                  ),
                 ),
               ),
               SizedBox(height: 16),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8.0),
-                  color: colorScheme.primary,
-                ),
-                child: ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor:
-                        WidgetStatePropertyAll<Color>(colorScheme.primary),
-                    foregroundColor:
-                        WidgetStatePropertyAll<Color>(colorScheme.onPrimary),
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => HealthForm()),
-                    );
-                  },
-                  child: Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Next ',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16.0, // Adjust the font size as needed
-                          ),
-                        ),
-                        Container(
-                          height: 1.0, // Adjust the height of the line
-                          width: 20.0, // Adjust the width of the line
-                          color: colorScheme
-                              .onPrimary, // Adjust the color of the line
-                          margin: EdgeInsets.symmetric(
-                              horizontal:
-                                  8.0), // Adjust the margin around the line
-                        ),
-                        Text(
-                          'Health Profile',
-                          style: TextStyle(
-                            fontWeight: FontWeight.normal,
-                            fontSize: 16.0, // Adjust the font size as needed
-                          ),
-                        ),
-                        Icon(Icons.chevron_right_outlined,
-                            size: 24.0, color: colorScheme.onPrimary),
-                      ],
+            ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8.0),
+            color: colorScheme.primary,
+          ),
+          child: ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor:
+                  WidgetStatePropertyAll<Color>(colorScheme.primary),
+              foregroundColor:
+                  WidgetStatePropertyAll<Color>(colorScheme.onPrimary),
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HealthForm()),
+              );
+            },
+            child: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Next ',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16.0, // Adjust the font size as needed
                     ),
                   ),
-                ),
+                  Container(
+                    height: 1.0, // Adjust the height of the line
+                    width: 20.0, // Adjust the width of the line
+                    color:
+                        colorScheme.onPrimary, // Adjust the color of the line
+                    margin: EdgeInsets.symmetric(
+                        horizontal: 8.0), // Adjust the margin around the line
+                  ),
+                  Text(
+                    'Health Profile',
+                    style: TextStyle(
+                      fontWeight: FontWeight.normal,
+                      fontSize: 16.0, // Adjust the font size as needed
+                    ),
+                  ),
+                  Icon(Icons.chevron_right_outlined,
+                      size: 24.0, color: colorScheme.onPrimary),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),

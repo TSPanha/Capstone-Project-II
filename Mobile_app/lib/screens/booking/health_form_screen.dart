@@ -1,5 +1,6 @@
 import 'package:doc_care/screens/booking/review_profile_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class HealthForm extends StatefulWidget {
   @override
@@ -43,28 +44,79 @@ class _HealthFormState extends State<HealthForm> {
                 'Kindly provide the patient\'s medical information and history.',
                 style: TextStyle(fontSize: 16)),
             SizedBox(height: 16),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.red.withOpacity(0.3),
+                borderRadius: BorderRadius.circular(6),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.star_border_sharp,
+                      size: 40,
+                      color: Colors.red.withOpacity(0.5),
+                    ),
+                    SizedBox(width: 16),
+                    Text(
+                      'New Health of Concern',
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(height: 16),
             Text('How long have you felt this way?',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-            DropdownButton<int>(
-              value: selectedDays,
-              onChanged: (value) {
-                setState(() {
-                  selectedDays = value!;
-                });
-              },
-              items: [for (var i = 1; i <= 30; i++) i]
-                  .map<DropdownMenuItem<int>>((int value) {
-                return DropdownMenuItem<int>(
-                  value: value,
-                  child: Text('$value Days',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-                );
-              }).toList(),
+            SizedBox(height: 16),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  height: 36,
+                  width: 72,
+                  child: TextField(
+                    onChanged: (value) {},
+                    style: TextStyle(fontSize: 16),
+                    keyboardType: TextInputType.number,
+                    textAlign: TextAlign.center,
+                    inputFormatters: [
+                      LengthLimitingTextInputFormatter(3),
+                      FilteringTextInputFormatter.digitsOnly,
+                    ],
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.only(bottom: 10),
+                      hintText: '0',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide:
+                            BorderSide(color: colorScheme.primary, width: 0.5),
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide:
+                            BorderSide(color: colorScheme.primary, width: 1.0),
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(width: 10),
+                Text(
+                  'Days',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                ),
+              ],
             ),
             SizedBox(height: 16),
             Text('Do you have any of these symptoms?',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+            SizedBox(height: 8),
             Text('General symptoms',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
             Row(
@@ -346,59 +398,60 @@ class _HealthFormState extends State<HealthForm> {
               ],
             ),
             SizedBox(height: 16),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8.0),
-                color: colorScheme.primary,
-              ),
-              child: ElevatedButton(
-                style: ButtonStyle(
-                  backgroundColor:
-                      WidgetStatePropertyAll<Color>(colorScheme.primary),
-                  foregroundColor:
-                      WidgetStatePropertyAll<Color>(colorScheme.onPrimary),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ReviewProfile()),
-                  );
-                },
-                child: Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Next ',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16.0, // Adjust the font size as needed
-                        ),
-                      ),
-                      Container(
-                        height: 1.0, // Adjust the height of the line
-                        width: 20.0, // Adjust the width of the line
-                        color: colorScheme
-                            .onPrimary, // Adjust the color of the line
-                        margin: EdgeInsets.symmetric(
-                            horizontal:
-                                8.0), // Adjust the margin around the line
-                      ),
-                      Text(
-                        'Review Profile',
-                        style: TextStyle(
-                          fontWeight: FontWeight.normal,
-                          fontSize: 16.0, // Adjust the font size as needed
-                        ),
-                      ),
-                      Icon(Icons.chevron_right_outlined,
-                          size: 24.0, color: colorScheme.onPrimary),
-                    ],
+          ],
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8.0),
+            color: colorScheme.primary,
+          ),
+          child: ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor:
+                  WidgetStatePropertyAll<Color>(colorScheme.primary),
+              foregroundColor:
+                  WidgetStatePropertyAll<Color>(colorScheme.onPrimary),
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ReviewProfile()),
+              );
+            },
+            child: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Next ',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16.0, // Adjust the font size as needed
+                    ),
                   ),
-                ),
+                  Container(
+                    height: 1.0, // Adjust the height of the line
+                    width: 20.0, // Adjust the width of the line
+                    color:
+                        colorScheme.onPrimary, // Adjust the color of the line
+                    margin: EdgeInsets.symmetric(
+                        horizontal: 8.0), // Adjust the margin around the line
+                  ),
+                  Text(
+                    'Review Profile',
+                    style: TextStyle(
+                      fontWeight: FontWeight.normal,
+                      fontSize: 16.0, // Adjust the font size as needed
+                    ),
+                  ),
+                  Icon(Icons.chevron_right_outlined,
+                      size: 24.0, color: colorScheme.onPrimary),
+                ],
               ),
             ),
-          ],
+          ),
         ),
       ),
     );
